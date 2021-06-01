@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include "platform.h"
+#include "xil_printf.h"
+#include "sleep.h"
+#include "xgpio.h"
+
+#define REG(address) *(volatile unsigned int*)(address)
+
+#define GPIO_BASE (0x41200000) /* XPAR_AXI_GPIO_0_BASEADDR */
+#define GPIO_DATA (GPIO_BASE + 0x0000)
+#define GPIO_TRI (GPIO_BASE + 0x0004)
+
+
+int main()
+{
+    init_platform();
+
+    print("Hello World\n\r");
+
+//    /************* Register Control *****************/
+//    /*Set all of 4 pins (LEDS) as output*/
+//    REG(GPIO_TRI) = 0x00;
+//
+//    while(1){
+//    	/* Set all of 4 pins (LEDS) as High */
+//    	REG(GPIO_DATA) = 0x0F;
+//    	sleep(1);
+//    	/* Set all of 4 pins (LEDs) as Low */
+//    	REG(GPIO_DATA) = 0x00;
+//    	sleep(1);
+//    }
+//    /************* Register Control *****************/
+
+    /************* API Driver Control *****************/
+    XGpio instXGpio;
+    XGpio_Initialize(&instXGpio, XPAR_AXI_GPIO_0_DEVICE_ID);
+
+    /* Set all of 4 pins(LEDS) as output */
+    XGpio_SetDataDirection(&instXGpio,1,0);
+
+    while(1){
+    	/*Set all of 4 pins(LEDs) as High*/
+    	XGpio_DiscreteWrite(&instXGpio,1,0x0F);
+    	sleep(1);
+    	/*Set all of 4 pins(LEDs) as Low*/
+    	XGpio_DiscreteWrite(&instXGpio,1,0x00);
+    	sleep(1);
+    }
+    /************* API Driver Control *****************/
+
+
+    cleanup_platform();
+    return 0;
+}
