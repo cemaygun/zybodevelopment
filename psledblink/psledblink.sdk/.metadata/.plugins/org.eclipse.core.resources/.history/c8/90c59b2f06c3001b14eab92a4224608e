@@ -1,0 +1,40 @@
+#include "xparameters.h"
+#include "xgpiops.h"
+#include "sleep.h"
+#define REG(address) *(volatile unsigned int*)(address) //Register writing function
+
+//See Zynq-7000 SOC Technical Reference Manual for registers /Page:1346
+#define GPIOPS_BASE (0xE000A000)
+#define GPIOPS_DATA_0FFSET (GPIOPS_BASE + 0x0040)
+#define GPIOPS_DIRM_0FFSET (GPIOPS_BASE + 0x0204)
+#define GPIO_OUTEN_0FFSET (GPIOPS_BASE + 0x0208)
+int main() {
+	    /* Set MIO7 (LD4) as output  */
+	    REG(GPIOPS_DIRM_0FFSET) |= 0b1000000; // Set MIO7 as output GPIO
+	    REG(GPIO_OUTEN_0FFSET) |= 1 << 7; // Set MIO7 output enable
+
+	    while(1){
+	    	/* Set MI07 as High */
+	    	REG(GPIOPS_DATA_0FFSET) |= 1 << 7;
+	    	sleep(1);
+	    	/* Set MIO7 as Low */
+	    	REG(GPIOPS_DATA_0FFSET) &= ~(1 << 7);
+	    	sleep(1);
+	    }
+	    /***** Directly Registor Control *****/
+
+//	XGpioPs_Config ledcfg = {XPAR_PS7_GPIO_0_DEVICE_ID, XPAR_PS7_GPIO_0_BASEADDR};
+//    XGpioPs led;
+//
+//    XGpioPs_CfgInitialize(&led, &ledcfg, ledcfg.BaseAddr); // initialize the driver device
+//    XGpioPs_SetOutputEnablePin(&led, a, 0b1); // set MIO7 as output
+//    XGpioPs_SetDirectionPin(&led, a, 0b1); // set MIO7 tristate as output (idk if both are required)
+//    XGpioPs_IntrDisablePin(&led, a); // disable interrupts on MIO7, (just in case)
+//
+//    while (1) {
+//		XGpioPs_WritePin(&led, a, 0b1); // set MIO7 high
+//		sleep(1); // wait a second
+//		XGpioPs_WritePin(&led, a, 0b0); // set MIO7 low
+//		sleep(1);
+//    }
+}

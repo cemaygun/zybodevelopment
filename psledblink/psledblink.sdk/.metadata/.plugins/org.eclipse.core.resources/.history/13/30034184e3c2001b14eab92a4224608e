@@ -1,0 +1,20 @@
+#include "xparameters.h"
+#include "xgpiops.h"
+#include "sleep.h"
+
+int main() {
+	XGpioPs_Config ledcfg = {XPAR_PS7_GPIO_0_DEVICE_ID, XPAR_PS7_GPIO_0_BASEADDR};
+    XGpioPs led;
+
+    XGpioPs_CfgInitialize(&led, &ledcfg, ledcfg.BaseAddr); // initialize the driver device
+    XGpioPs_SetOutputEnablePin(&led, 5, 0b1); // set MIO7 as output
+    XGpioPs_SetDirectionPin(&led, 5, 0b1); // set MIO7 tristate as output (idk if both are required)
+    XGpioPs_IntrDisablePin(&led, 5); // disable interrupts on MIO7, (just in case)
+
+    while (1) {
+		XGpioPs_WritePin(&led, 5, 0b1); // set MIO7 high
+		sleep(1); // wait a second
+		XGpioPs_WritePin(&led, 5, 0b0); // set MIO7 low
+		sleep(1);
+    }
+}
