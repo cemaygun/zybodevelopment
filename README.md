@@ -18,10 +18,10 @@ Using Vivado add the following IP blocks and run block automation. Finally, you 
 **Result** 
 You will see that LD0, LD1, LD2, LD3 blink every 1 second. (See the video).
 
-# 1- **ledblinky**
+# 1- **psledblink**
 
 **The Purpose**
-As different from first task, we control the led (LD4) connected directly to PS.
+As different from first task, we control the led (LD4) which is directly connected to PS.
 
 **HW design**
 For hardware design, add ZynqQ7 Processing System IP block only. To control LD4, we do not need AXI interface unlike first project since it is not connected to PL. 
