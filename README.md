@@ -18,7 +18,7 @@ Using Vivado add the following IP blocks and run block automation. Finally, you 
 **Result** 
 You will see that LD0, LD1, LD2, LD3 blink every 1 second. (See the video).
 
-# 1- **psledblink**
+# 2- **psledblink**
 
 **The Purpose**
 As different from first task, we control the led (LD4) which is directly connected to PS.
