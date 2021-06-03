@@ -5,7 +5,7 @@
 **The Purpose**
 
 The purpose of this task is to build a led blink project. It targets the leds which are connected to PL part. These LEDs are LD0, LD1, LD2, LD3 on Zybo Z7-20. 
-PS (ARM Cortex-A9) communicates with PL via AXI interface. Therefore, in Vivado 2019.1 was used for hardware design.
+PS (ARM Cortex-A9) communicates with PL via AXI interface. Vivado 2019.1 and Xilinx SDK were used for hardware and software design respectively.
 
 **HW design**
 
@@ -20,7 +20,7 @@ Using Vivado add the following IP blocks and run block automation. Finally, you 
 
 **Result** 
 
-You will see that LD0, LD1, LD2, LD3 blink every 1 second. (See the video).
+LD0, LD1, LD2, LD3 blink every 1 second. (See the video).
 
 # 2- **psledblink**
 
@@ -40,4 +40,4 @@ For hardware design, add ZynqQ7 Processing System IP block only. To control LD4,
 
 **Result** 
 
-You will see that LD4 blink every 1 second. (See the video).
+LD4 blink every 1 second. (See the video).
