@@ -47,6 +47,7 @@ LD4 blink every 1 second. (See the video).
 **The Purpose**
 
 The purpose of this task is to blink the MIO LED using Timer. It uses led (Pin7) and timer which are connected to PS (ARM A9). 
+
 **HW design**
 
 Using Vivado add the following IP blocks and run block automation. Finally, you can export the implementation to hardware then, generate the bitstream which will be used in software design.
