@@ -35,7 +35,7 @@ For hardware design, add ZynqQ7 Processing System IP block only. To control LD4,
 **SW design** (Vivado SDK)
 
 1. Generate an application project using the bitstream generated in the previous step.
-2. Using ZYNQ7000 datasheet, go and find the GPIO section and find and write into related registers to control LD4.
+2. Using ZYNQ7000 datasheet, find the GPIO section and write into related registers to control LD4.
 (LD4 is pin7)
 
 **Result** 
