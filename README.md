@@ -1,5 +1,7 @@
 # **ZYBO Z7 20 BOARD DEVELOPMENT LEARNING PROJECTS**
 
+The projects below uses Zybo Z7 20 development board with XilinxSDK, Vivado 2019 software development kits
+
 # 1- **ledblinky**
 
 **The Purpose**
